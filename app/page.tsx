@@ -21,7 +21,7 @@ const initLiff = async () => {
 }
 export default function Home() {
 
-  const [init, setInit] = useState({}) as any
+  const [init, setInit] = useState<any>(null)
 
   useEffect(() => {
     console.log('useEffect')
