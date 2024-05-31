@@ -2,6 +2,7 @@
 import liff from '@line/liff';
 
 import { useEffect, useState } from 'react'
+import { text } from 'stream/consumers';
 
 const logout = () => {
   liff.logout();
@@ -40,18 +41,17 @@ export default function Home() {
   }, [])
 
   if (!init) {
-    return <h1> Loading... </h1>
+    return <h1 style={{textAlign:'center'}}> Loading... </h1>
   }
 
   return (
-    <>
+    <div style={{textAlign:'center'}}>
       <h2>USER ID LINE : {init?.userId}</h2>
-      <h2>ID Token: {init?.getEmail}</h2>
+      <h2>ID Token: {init?.profile.idToken}</h2>
       <h2>DisplayName : {init?.displayName}</h2>
       <h2>StatusMessage : {init?.statusMessage}</h2>
       <img src={init?.pictureUrl} width={200} height={200} alt="profile" />
-      <button onClick={() => logout()} style={{ width: "20%", height: "30%" }}>Logout</button>
-      
-    </>
+      <button onClick={() => logout()} style={{ width: "20%", height: "30%",marginTop:'5px',textAlign:'center' }}>Logout</button>
+    </div>
   );
 }
