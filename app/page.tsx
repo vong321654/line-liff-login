@@ -45,13 +45,13 @@ export default function Home() {
   }
 
   return (
-    <div style={{textAlign:'center'}}>
+    <>
       <h2>USER ID LINE : {init?.userId}</h2>
       <h2>ID Token: {init?.profile.idToken}</h2>
       <h2>DisplayName : {init?.displayName}</h2>
       <h2>StatusMessage : {init?.statusMessage}</h2>
       <img src={init?.pictureUrl} width={200} height={200} alt="profile" />
       <button onClick={() => logout()} style={{ width: "20%", height: "30%",marginTop:'5px',textAlign:'center' }}>Logout</button>
-    </div>
+    </>
   );
 }
