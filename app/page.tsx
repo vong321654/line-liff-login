@@ -2,6 +2,7 @@
 import liff from '@line/liff';
 import { useEffect, useState } from 'react';
 
+
 const liffId: string = '2005047404-MgGBJNxX';
 
 const initLiff = async () => {
