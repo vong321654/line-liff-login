@@ -3,6 +3,11 @@ import liff from '@line/liff';
 
 import { useEffect, useState } from 'react'
 
+const logout = () => {
+  liff.logout();
+  window.location.reload();
+}
+
 const liffId: string = '2005047404-MgGBJNxX';
 const initLiff = async () => {
   await liff.init({ liffId: liffId })
@@ -46,6 +51,7 @@ export default function Home() {
       <h2>DisplayName : {init?.displayName}</h2>
       <h2>StatusMessage : {init?.statusMessage}</h2>
       <img src={init?.pictureUrl} width={200} height={200} alt="profile" />
+      <button onClick={() => logout()} style={{ width: "20%", height: "30%" }}>Logout</button>
       
     </>
   );
