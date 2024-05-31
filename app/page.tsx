@@ -45,9 +45,8 @@ export default function Home() {
 
   return (
     <>
-      {JSON.stringify(init)}
       <h2>USER ID LINE : {init?.userId}</h2>
-      <h2>ID Token: {init?.idToken}</h2>
+      <h2>ID Token: {init?.getEmail}</h2>
       <h2>DisplayName : {init?.displayName}</h2>
       <h2>StatusMessage : {init?.statusMessage}</h2>
       <img src={init?.pictureUrl} width={200} height={200} alt="profile" />
