@@ -3,7 +3,7 @@ import liff from '@line/liff';
 
 import { useEffect, useState } from 'react'
 
-const liffId: string = '2004442336-Og19r7oK';
+const liffId: string = '2005047404-MgGBJNxX';
 const initLiff = async () => {
   await liff.init({ liffId: liffId })
   if (!liff.isLoggedIn()) {
@@ -15,6 +15,9 @@ const initLiff = async () => {
 
   const getEmail = liff.getDecodedIDToken()
   console.log('getEmail', getEmail)
+
+  const idToken = liff.getDecodedIDToken();
+    console.log('idToken', idToken);
 
 
   return profile
@@ -40,6 +43,7 @@ export default function Home() {
       <h2>  liffId: {liffId}</h2>
       {JSON.stringify(init)}
       <h2>USER ID LINE : {init?.userId}</h2>
+      <h2>ID Token : {init?.idToken}</h2>
       <h2>DisplayName : {init?.displayName}</h2>
       <h2>StatusMessage : {init?.statusMessage}</h2>
       <img src={init?.pictureUrl} width={200} height={200} alt="profile" />
