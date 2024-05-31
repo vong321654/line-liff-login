@@ -45,11 +45,11 @@ export default function Home() {
   return (
     <>
       {JSON.stringify(init)}
-      <h2>USER ID LINE : {init?.userId}</h2> &nbsp;
-      <h2>ID Token : {init?.idToken}</h2> &nbsp;
-      <h2>DisplayName : {init?.displayName}</h2> &nbsp;
-      <h2>StatusMessage : {init?.statusMessage}</h2> &nbsp;
-      <img src={init?.pictureUrl} width={200} height={200} alt="profile"/> &nbsp;
+      <h2>USER ID LINE : {init?.userId}</h2>
+      <h2>ID Token : {init?.idToken}</h2>
+      <h2>DisplayName : {init?.displayName}</h2>
+      <h2>StatusMessage : {init?.statusMessage}</h2>
+      <img src={init?.pictureUrl} width={200} height={200} alt="profile"/>
       <div>
         <button onClick={() => logout()} style={{ width: "50%", height: "30", }}>Logout</button>
       </div>
