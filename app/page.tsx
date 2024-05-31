@@ -2,7 +2,6 @@
 import liff from '@line/liff';
 
 import { useEffect, useState } from 'react'
-import { text } from 'stream/consumers';
 
 const logout = () => {
   liff.logout();
@@ -21,6 +20,9 @@ const initLiff = async () => {
 
   const getEmail = liff.getDecodedIDToken()
   console.log('getEmail', getEmail)
+
+  const idToken = liff.getIDToken();
+  console.log(idToken);
 
   return profile
 }
@@ -43,7 +45,7 @@ export default function Home() {
   return (
     <>
       <h2>USER ID LINE : {init?.userId}</h2>
-      <h2>ID Token: ***Press F12 last article***{init?.getEmail}</h2>
+      <h2>ID Token: ***Press F12 last article***{init?.idToken}</h2>
       <h2>DisplayName : {init?.displayName}</h2>
       <h2>StatusMessage : {init?.statusMessage}</h2>
       <img src={init?.pictureUrl} width={200} height={200} alt="profile" />
