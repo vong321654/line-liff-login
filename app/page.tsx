@@ -14,8 +14,8 @@ const initLiff = async () => {
   }
   const profile = await liff.getProfile()
   console.log('profile', profile)
-  const getEmail = liff.getDecodedIDToken()
-  console.log('getEmail', getEmail)
+  // const getEmail = liff.getDecodedIDToken()
+  // console.log('getEmail', getEmail)
   const idToken = liff.getIDToken();
   console.log(idToken);
   return profile
@@ -36,7 +36,7 @@ export default function Home() {
   return (
     <>
       <h2>USER ID LINE : {init?.userId}</h2>
-      <h2>ID Token: {init?.getEmail}</h2>
+      <h2>ID Token: {init?.profile.idToken}</h2>
       <h2>DisplayName : {init?.displayName}</h2>
       <img src={init?.pictureUrl} width={200} height={200} alt="profile" />
       <button onClick={() => logout()} style={{ width: "20%", height: "30%" }}>Logout</button>
