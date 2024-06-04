@@ -16,7 +16,7 @@ const initLiff = async () => {
   console.log('profile', profile)
   // const getEmail = liff.getDecodedIDToken()
   // console.log('getEmail', getEmail)
-  const idToken = liff.getDecodedIDToken();
+  const idToken = liff.getIDToken();
   console.log(idToken);
   return profile
 }
