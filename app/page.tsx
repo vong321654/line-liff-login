@@ -3,9 +3,10 @@
 import liff from '@line/liff';
 import { useEffect, useState } from 'react';
 import { UserDataModel } from './Type/UserDataModel';
+import { configDotenv } from 'dotenv';
 
 const liffId: string = process.env.NEXT_PUBLIC_LINE_LIFF_ID as string;
-console.log("LIFF ID:", liffId);
+console.log("LIFF ID:", process.env.NEXT_PUBLIC_LINE_LIFF_ID);
 
 const initLiff = async () => {
   try {
