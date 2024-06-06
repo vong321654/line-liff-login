@@ -1,23 +1,26 @@
 "use client"
 import liff from '@line/liff';
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import { UserDataModel } from './Type/UserDataModel';
-import dotenv from 'dotenv';
-dotenv.config();
 
+const liffId: string = process.env.NEXT_PUBLIC_LINE_LIFF_ID as string;
+console.log("LIFF ID:", liffId);
 
-//const liffId: string = '2005047404-MgGBJNxX';
-const liffId: string = process.env.LINE_LIFF_ID as string;
 const initLiff = async () => {
-  await liff.init({ liffId })
-  if (!liff.isLoggedIn()) {
-    liff.login()
-    return false
+  try {
+    await liff.init({ liffId });
+    if (!liff.isLoggedIn()) {
+      liff.login();
+      return false;
+    }
+    const idToken = liff.getIDToken();
+    console.log(idToken);
+    return idToken;
+  } catch (error) {
+    console.error("Error initializing LIFF:", error);
+    return false;
   }
-  const idToken = liff.getIDToken();
-  console.log(idToken);
-  return idToken
-}
+};
 
 const logout = () => {
   liff.logout();
