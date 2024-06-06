@@ -5,12 +5,12 @@ import { useEffect, useState } from 'react';
 import { UserDataModel } from './Type/UserDataModel';
 import { configDotenv } from 'dotenv';
 
-const liffId: string = process.env.NEXT_PUBLIC_LINE_LIFF_ID as string;
+const liffId = process.env.NEXT_PUBLIC_LINE_LIFF_ID as string;
 console.log("LIFF ID:", process.env.NEXT_PUBLIC_LINE_LIFF_ID);
 
 const initLiff = async () => {
   try {
-    await liff.init({ liffId });
+    await liff.init({ liffId: liffId});
     if (!liff.isLoggedIn()) {
       liff.login();
       return null;
