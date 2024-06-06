@@ -17,6 +17,7 @@ const initLiff = async () => {
   // return profile
   const idToken = await liff.getIDToken();
   console.log(idToken);
+  return idToken
   
 }
 export default function Home() {
