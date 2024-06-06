@@ -12,6 +12,7 @@
     "@line/liff": "^2.23.2",
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.11",
+    "dotenv": "^16.4.5",
     "next": "14.2.2",
     "next-env": "^1.1.1",
     "react": "^18",
