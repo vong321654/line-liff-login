@@ -12,14 +12,14 @@ const initLiff = async () => {
     await liff.init({ liffId });
     if (!liff.isLoggedIn()) {
       liff.login();
-      return null; // Return null when user is not logged in
+      return null;
     }
     const idToken = liff.getIDToken();
     console.log(idToken);
-    return idToken; // Return ID token when user is logged in
+    return idToken;
   } catch (error) {
     console.error("Error initializing LIFF:", error);
-    return null; // Return null if initialization fails
+    return null;
   }
 };
 
