@@ -6,15 +6,21 @@ import { UserDataModel } from './Type/UserDataModel';
 //const liffId: string = '2005047404-MgGBJNxX';
 const liffId: string = process.env.LINE_CLIENT_ID as string;
 const initLiff = async () => {
-  await liff.init({ liffId: liffId })
-  if (!liff.isLoggedIn()) {
-    liff.login()
-    return false
+  try {
+    await liff.init({ liffId });
+    if (!liff.isLoggedIn()) {
+      liff.login();
+      return false;
+    }
+    const idToken = liff.getIDToken();
+    console.log(idToken);
+    return idToken;
+  } catch (error) {
+    console.error("Error initializing LIFF:", error);
+    return false;
   }
-  const idToken = liff.getIDToken();
-  console.log(idToken);
-  return idToken
-}
+};
+
 
 const logout = () => {
   liff.logout();
