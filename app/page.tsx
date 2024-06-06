@@ -1,6 +1,7 @@
 "use client"
 import liff from '@line/liff';
 import { useEffect, useState } from 'react'
+import { UserDataModel } from './Type/UserDataModel';
 const logout = () => {
   liff.logout();
   window.location.reload();
@@ -17,7 +18,7 @@ const initLiff = async () => {
   return idToken
 }
 export default function Home() {
-  const [init, setInit] = useState<any>(null)
+  const [init, setInit] = useState<UserDataModel | null>(null);
   useEffect(() => {
     console.log('useEffect')
     initLiff()
