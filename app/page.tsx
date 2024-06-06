@@ -2,10 +2,7 @@
 import liff from '@line/liff';
 import { useEffect, useState } from 'react'
 import { UserDataModel } from './Type/UserDataModel';
-const logout = () => {
-  liff.logout();
-  window.location.reload();
-}
+
 const liffId: string = process.env.LINE_CLIENT_ID as string;
 const initLiff = async () => {
   await liff.init({ liffId: liffId })
@@ -17,6 +14,12 @@ const initLiff = async () => {
   console.log(idToken);
   return idToken
 }
+
+const logout = () => {
+  liff.logout();
+  window.location.reload();
+}
+
 export default function Home() {
   const [init, setInit] = useState<UserDataModel | null>(null);
   useEffect(() => {
