@@ -12,13 +12,12 @@ const initLiff = async () => {
     liff.login()
     return false
   }
-  const profile = await liff.getProfile()
-  console.log('profile', profile)
-  // const getEmail = liff.getDecodedIDToken()
-  // console.log('getEmail', getEmail)
-  const idToken = liff.getIDToken();
+  // const profile = await liff.getProfile()
+  // console.log('profile', profile)
+  // return profile
+  const idToken = await liff.getIDToken();
   console.log(idToken);
-  return profile
+  
 }
 export default function Home() {
   const [init, setInit] = useState<any>(null)
