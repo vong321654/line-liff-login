@@ -1,4 +1,4 @@
-require('next-env')();
+require("dotenv").config();
 module.exports = {
     env:{
         NEXT_PUBLIC_LINE_CLIENT_ID : '2005047404-MgGBJNxX',
