@@ -1,3 +1,5 @@
+"use client"
+
 import liff from '@line/liff';
 import { useEffect, useState } from 'react';
 import { UserDataModel } from './Type/UserDataModel';
