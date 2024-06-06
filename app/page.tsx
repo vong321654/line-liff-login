@@ -3,8 +3,8 @@ import liff from '@line/liff';
 import { useEffect, useState } from 'react'
 import { UserDataModel } from './Type/UserDataModel';
 
-const liffId: string = '2005047404-MgGBJNxX';
-//const liffId: string = process.env.LINE_CLIENT_ID as string;
+//const liffId: string = '2005047404-MgGBJNxX';
+const liffId: string = process.env.LINE_CLIENT_ID as string;
 const initLiff = async () => {
   await liff.init({ liffId: liffId })
   if (!liff.isLoggedIn()) {
