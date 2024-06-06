@@ -5,7 +5,7 @@ import { UserDataModel } from './Type/UserDataModel';
 
 
 //const liffId: string = '2005047404-MgGBJNxX';
-const liffId: string = 'process.env.NEXT_PUBLIC_LINE_CLIENT_ID';
+const liffId = process.env.LINE_LIFF_ID as string;
 const initLiff = async () => {
   await liff.init({ liffId: liffId })
   if (!liff.isLoggedIn()) {
