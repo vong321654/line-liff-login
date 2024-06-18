@@ -36,7 +36,7 @@ const LineLogin: React.FC = () => {
 
   const sendProfileToBackend = async (idToken: string) => {
     try {
-      const response = await fetch('http://127.0.0.1:5555/ma-bkk/sit/v1/profile', {
+      const response = await fetch('https://larry-api.larry-cctv.com/ma-bkk/sit/v1/profile', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
