@@ -1,11 +1,11 @@
-'use client'
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+
 import liff from '@line/liff';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import { UserDataModel } from './Type/UserDataModel';
 import { Button } from '@mui/material';
+import router from 'next/router';
 //import { sendProfileToBackend } from '../api/api'; // นำเข้าฟังก์ชันที่แยกออกมา
 
 const liffId = process.env.NEXT_PUBLIC_LINE_LIFF_ID as string;
@@ -16,7 +16,6 @@ const LineLogin: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState<string | null>(null);
   const [completed, setCompleted] = useState(false); // เพิ่มสถานะ completed
-  const router = useRouter();
 
   const sendProfileToBackend = async (idToken: string): Promise<string> => {
     try {
@@ -69,7 +68,7 @@ const LineLogin: React.FC = () => {
       // เมื่อส่งข้อมูลไป backend เรียบร้อยแล้ว ให้ทำการเปลี่ยนเส้นทางไปยังหน้า /Signup/register
       router.push('/Signup/register');
     }
-  }, [completed, router]);
+  }, [completed]);
 
   if (loading) {
     return (
