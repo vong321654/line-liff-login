@@ -68,7 +68,7 @@ const LineLogin: React.FC = () => {
   useEffect(() => {
     if (completed) {
       // เมื่อส่งข้อมูลไป backend เรียบร้อยแล้ว ให้ทำการเปลี่ยนเส้นทางไปยังหน้า /Signup/register
-      router.push('/Signup/register');
+      router.push('https://ma-bkk-sit.larry-cctv.com/Signup/register');
     }
   }, [completed]);
 
