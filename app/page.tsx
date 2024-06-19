@@ -68,7 +68,7 @@ const LineLogin: React.FC = () => {
       // เมื่อส่งข้อมูลไป backend เรียบร้อยแล้ว ให้ทำการเปลี่ยนเส้นทางไปยังหน้า /Signup/register
       router.push('/Signup/register');
     }
-  }, [completed]);
+  }, [completed, router]);
 
   if (loading) {
     return (
