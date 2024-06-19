@@ -1,11 +1,11 @@
-'use client';
-
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import liff from '@line/liff';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import { UserDataModel } from './Type/UserDataModel';
 import { Button } from '@mui/material';
+//import { sendProfileToBackend } from '../api/api'; // นำเข้าฟังก์ชันที่แยกออกมา
 
 const liffId = process.env.NEXT_PUBLIC_LINE_LIFF_ID as string;
 console.log('LIFF ID:', liffId);
@@ -14,6 +14,29 @@ const LineLogin: React.FC = () => {
   const [profile, setProfile] = useState<UserDataModel | null>(null);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState<string | null>(null);
+  const [completed, setCompleted] = useState(false); // เพิ่มสถานะ completed
+  const router = useRouter();
+
+  const sendProfileToBackend = async (idToken: string): Promise<string> => {
+    try {
+      //const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
+      const response = await fetch('https://larry-api.larry-cctv.com/ma-bkk/sit/v1/profile', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ idToken }) // ส่ง idToken เป็น JSON
+      });
+      if (!response.ok) {
+        throw new Error('Failed to send profile to backend');
+      }
+      return 'Profile sent to backend successfully';
+    } catch (error) {
+      console.error('Error sending profile to backend:', error);
+      throw new Error('Error sending profile to backend');
+    }
+  };
+
   useEffect(() => {
     const initLiff = async () => {
       try {
@@ -26,6 +49,7 @@ const LineLogin: React.FC = () => {
         console.log(idToken);
         if (idToken) {
           await sendProfileToBackend(idToken); // ส่ง idToken ถ้ามีค่า
+          setCompleted(true); // กำหนดให้ completed เป็น true เมื่อส่งข้อมูลเสร็จสิ้น
         } else {
           console.error('ID Token is null');
         }
@@ -39,27 +63,12 @@ const LineLogin: React.FC = () => {
     initLiff();
   }, []);
 
-
-
-  const sendProfileToBackend = async (idToken: string) => {
-    try {
-      const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
-      const response = await fetch(`${baseURL}/profile`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ idToken }) // ส่ง idToken เป็น JSON
-      });
-      if (!response.ok) {
-        throw new Error('Failed to send profile to backend');
-      }
-      setMessage('Profile sent to backend successfully');
-    } catch (error) {
-      console.error('Error sending profile to backend:', error);
-      setMessage('Error sending profile to backend');
+  useEffect(() => {
+    if (completed) {
+      // เมื่อส่งข้อมูลไป backend เรียบร้อยแล้ว ให้ทำการเปลี่ยนเส้นทางไปยังหน้า /Signup/register
+      router.push('/Signup/register');
     }
-  };
+  }, [completed]);
 
   if (loading) {
     return (
