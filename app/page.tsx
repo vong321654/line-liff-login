@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import liff from '@line/liff';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
-import { UserDataModel } from '../sinister/core/Type/UserDataModel';
+import { UserDataModel } from './Type/UserDataModel';
 import { Button } from '@mui/material';
 
 const liffId = process.env.NEXT_PUBLIC_LINE_LIFF_ID as string;
