@@ -6,7 +6,7 @@ import liff from '@line/liff';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import { UserDataModel } from './Type/UserDataModel';
-import { Button } from '@mui/material';
+import { Button, Link } from '@mui/material';
 //import { sendProfileToBackend } from '../../../pages/api/loginline/api'; // นำเข้าฟังก์ชันที่แยกออกมา
 import router from 'next/router';
 
@@ -68,7 +68,7 @@ const LineLogin: React.FC = () => {
   useEffect(() => {
     if (completed) {
       // เมื่อส่งข้อมูลไป backend เรียบร้อยแล้ว ให้ทำการเปลี่ยนเส้นทางไปยังหน้า /Signup/register
-      router.push('https://ma-bkk-sit.larry-cctv.com/Signup/register');
+      <Link href='https://ma-bkk-sit.larry-cctv.com/Signup/register' />
     }
   }, [completed]);
 
