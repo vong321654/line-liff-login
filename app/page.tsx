@@ -5,9 +5,9 @@ import { useEffect, useState } from 'react';
 import liff from '@line/liff';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
-import { UserDataModel } from './Type/UserDataModel';
-import { Button, Link } from '@mui/material';
-//import { sendProfileToBackend } from '../../../pages/api/loginline/api'; // นำเข้าฟังก์ชันที่แยกออกมา
+import { UserDataModel } from '../sinister/core/Type/UserDataModel';
+import { Button } from '@mui/material';
+import { sendProfileToBackend } from '../../../pages/api/loginline/api'; // นำเข้าฟังก์ชันที่แยกออกมา
 import router from 'next/router';
 
 const liffId = process.env.NEXT_PUBLIC_LINE_LIFF_ID as string;
@@ -18,26 +18,6 @@ const LineLogin: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState<string | null>(null);
   const [completed, setCompleted] = useState(false); // เพิ่มสถานะ completed  const router = useRouter();
-  const sendProfileToBackend = async (idToken: string): Promise<string> => {
-    try {
-      const apiURL = process.env.NEXT_PUBLIC_API_BASE_URL;
-      const response = await fetch(`http://127.0.0.1:5555/ma-bkk/sit/v1/profile`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ idToken }) // ส่ง idToken เป็น JSON
-      });
-      if (!response.ok) {
-        throw new Error('Failed to send profile to backend');
-      }
-      return 'Profile sent to backend successfully';
-    } catch (error) {
-      console.error('Error sending profile to backend:', error);
-      throw new Error('Error sending profile to backend');
-    }
-  };
-  
 
   useEffect(() => {
     const initLiff = async () => {
@@ -50,8 +30,20 @@ const LineLogin: React.FC = () => {
         const idToken = liff.getIDToken();
         console.log(idToken);
         if (idToken) {
-          await sendProfileToBackend(idToken); // ส่ง idToken ถ้ามีค่า
-          setCompleted(true); // กำหนดให้ completed เป็น true เมื่อส่งข้อมูลเสร็จสิ้น
+          const response = await fetch('/api/login', { // เปลี่ยน path ให้ถูกต้อง
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ idToken })
+          });
+          if (response.ok) {
+            const data = await response.json();
+            console.log('User data:', data);
+            setCompleted(true); // กำหนดให้ completed เป็น true เมื่อส่งข้อมูลเสร็จสิ้น
+          } else {
+            console.error('Failed to send idToken to backend');
+          }
         } else {
           console.error('ID Token is null');
         }
@@ -68,7 +60,7 @@ const LineLogin: React.FC = () => {
   useEffect(() => {
     if (completed) {
       // เมื่อส่งข้อมูลไป backend เรียบร้อยแล้ว ให้ทำการเปลี่ยนเส้นทางไปยังหน้า /Signup/register
-      window.location.href = 'https://ma-bkk-sit.larry-cctv.com/Signup/register';
+      router.push('/Signup/register');
     }
   }, [completed]);
 
@@ -80,7 +72,7 @@ const LineLogin: React.FC = () => {
     );
   }
 
-  return (null);
+  return null;
 };
 
 export default LineLogin;
