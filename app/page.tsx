@@ -7,7 +7,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import { UserDataModel } from './Type/UserDataModel';
 import { Button } from '@mui/material';
-import { sendProfileToBackend } from '../../../pages/api/loginline/api'; // นำเข้าฟังก์ชันที่แยกออกมา
+import { sendProfileToBackend } from './api/api';// นำเข้าฟังก์ชันที่แยกออกมา
 import router from 'next/router';
 
 const liffId = process.env.NEXT_PUBLIC_LINE_LIFF_ID as string;
