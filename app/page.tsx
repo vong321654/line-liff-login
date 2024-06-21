@@ -30,7 +30,7 @@ const LineLogin: React.FC = () => {
         const idToken = liff.getIDToken();
         console.log(idToken);
         if (idToken) {
-          const response = await fetch('/api/login', { // เปลี่ยน path ให้ถูกต้อง
+          const response = await fetch('http://127.0.0.1:3000/api/login', { // เปลี่ยน path ให้ถูกต้อง
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
