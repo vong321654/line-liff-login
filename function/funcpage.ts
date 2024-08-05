@@ -20,7 +20,7 @@ const useFuncPage = () => {
           const idToken = liff.getIDToken();
           console.log(idToken);
           if (idToken) {
-            const response = await fetch('/api/login', {
+            const response = await fetch('http://127.0.0.1:5555/v1/profile', {
               // เปลี่ยน path ให้ถูกต้อง
               method: 'POST',
               headers: {
