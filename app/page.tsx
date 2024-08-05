@@ -6,17 +6,12 @@ import liff from '@line/liff';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import { UserDataModel } from './Type/UserDataModel';
-import { Button } from '@mui/material';
-import { sendProfileToBackend } from './api/api';// นำเข้าฟังก์ชันที่แยกออกมา
-import router from 'next/router';
 
 const liffId = process.env.NEXT_PUBLIC_LINE_LIFF_ID as string;
 console.log('LIFF ID:', liffId);
 
 const LineLogin: React.FC = () => {
-  const [profile, setProfile] = useState<UserDataModel | null>(null);
   const [loading, setLoading] = useState(true);
-  const [message, setMessage] = useState<string | null>(null);
   const [completed, setCompleted] = useState(false); // เพิ่มสถานะ completed  const router = useRouter();
 
   useEffect(() => {
